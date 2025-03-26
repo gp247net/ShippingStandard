@@ -81,14 +81,7 @@ class AppConfig extends ExtensionConfigDefault
 
                 $shipping = AdminMenu::where('key',$this->configKey)->first();
                 if (!$shipping) {
-                    AdminMenu::create([
-                        'sort' => 10,
-                        'parent_id' => $position,
-                        'title' => $this->appPath.'::'.$this->configKey . '.lang.title',
-                        'icon' => 'fas fa-mug-hot',
-                        'uri' => 'admin::shippingstandard',
-                        'key' => $this->configKey,
-                    ]);
+                    //
                 }
                 
                 //Insert data default
@@ -115,6 +108,10 @@ class AppConfig extends ExtensionConfigDefault
 
             //Admin config home
             AdminHome::where('extension', $this->appPath)->delete();
+
+            //
+            AdminMenu::where('key',$this->configKey)
+            ->delete();
 
             (new ExtensionModel)->uninstallExtension();
 
