@@ -83,10 +83,7 @@ class AppConfig extends ExtensionConfigDefault
                 if (!$shipping) {
                     //
                 }
-                
-                //Insert data default
-                \DB::connection(GP247_DB_CONNECTION)->table(GP247_DB_PREFIX.'shop_shipping_standard')->insertOrIgnore(['fee' => 20,'shipping_free' => '10000']);
-        
+                        
                 $return = ['error' => 0, 'msg' => gp247_language_render('admin.extension.install_success')];
             } catch (\Throwable $e) {
                 $return = ['error' => 1, 'msg' => $e->getMessage()];
