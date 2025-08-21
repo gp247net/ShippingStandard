@@ -1,73 +1,61 @@
 # ShippingStandard Plugin
 
-## English
+## Overview
+Standard shipping plugin for GP247/Shop. It calculates shipping fees based on the cart subtotal and automatically applies free shipping when the configured threshold is met.
 
-### Description
-This is a basic Shipping plugin for GP247/Shop, designed to calculate shipping costs based on the total order value.
+- Requirements: GP247/Shop (Core >= 1.1), package `gp247/shop` installed and active.
+- Version: 1.0.2
 
-### Features
-- Calculate shipping costs based on total order value
-- Automatic free shipping when order value exceeds configured threshold
-- Flexible configuration through config.php file
+## Features
+- Calculate shipping fee from cart subtotal.
+- Automatic free shipping when subtotal >= `shipping_free`.
+- Easy configuration via the plugin `config.php`.
+- Exposes front/admin routes for quick checks: `plugin/shippingstandard/index`, `GP247_ADMIN_PREFIX/shippingstandard`.
 
-### Requirements
-- GP247/Shop must be pre-installed in the system
+## Installation
+You can install this plugin in one of the following ways:
 
-### Installation
-There are 3 ways to install the plugin:
+1) Online installation
+- Open the Plugin Library in Admin.
+- Find and install the "ShippingStandard" plugin.
 
-1. **Online Installation**
-   - Access the Plugin library
-   - Find and install the ShippingStandard plugin
+2) Install from .zip
+- Download the plugin .zip package.
+- Upload/import the .zip in Admin and follow the prompts to complete installation.
 
-2. **ZIP File Installation**
-   - Import the plugin zip file
-   - System will automatically install the plugin
+3) Manual installation (for developers)
+- Extract the plugin package.
+- Copy it to `app/GP247/Plugins/ShippingStandard`.
+- Log in to Admin and enable it from the Extensions area.
 
-3. **Manual Installation**
-   - Extract the plugin file
-   - Copy all contents to `app/GP247/Plugins/ShippingStandard` directory
-   - Access the admin page
-   - Go to `Save local` to complete installation
+## Usage
+1) Enable the plugin
+- Go to Admin > Extensions > Shipping and enable "ShippingStandard".
 
-### Configuration
-Configuration parameters are stored in `config.php`:
-- Order value threshold for free shipping
-- Shipping cost calculation parameters
+2) Configure parameters
+- Edit `app/GP247/Plugins/ShippingStandard/config.php`:
 
----
+```php
+<?php
+return [
+    'fee' => 20, // Base shipping fee
+    'shipping_free' => 10000, // Free shipping threshold (subtotal >= value)
+];
+```
 
-## Tiếng Việt
+- Tips:
+  - Set `shipping_free = 0` if you always want to charge the fee (no free-shipping threshold).
+  - Adjust `fee` to match your policy.
 
-### Mô tả
-Đây là Plugin Shipping cơ bản dành cho GP247/Shop, được thiết kế để tính toán chi phí vận chuyển dựa trên tổng giá trị đơn hàng.
+3) Verify integration
+- During checkout, the plugin automatically computes the fee based on the current subtotal.
+- Optionally visit `plugin/shippingstandard/index` to verify the front route is reachable.
 
-### Tính năng
-- Tính chi phí vận chuyển dựa trên tổng giá trị đơn hàng
-- Tự động miễn phí vận chuyển khi giá trị đơn hàng vượt quá ngưỡng được cấu hình
-- Cấu hình linh hoạt thông qua file config.php
+## Documentation
+- GitHub: `https://github.com/gp247net/ShippingStandard`
+- Installation guide: `https://gp247.net/vi/docs/user-guide-extension/guide-to-installing-the-extension.html`
 
-### Yêu cầu
-- GP247/Shop đã được cài đặt sẵn trong hệ thống
+## License
+Developed by GP247
 
-### Cách cài đặt
-Có 3 cách để cài đặt plugin:
 
-1. **Cài đặt online**
-   - Truy cập thư viện Plugin
-   - Tìm và cài đặt ShippingStandard plugin
-
-2. **Cài đặt qua file zip**
-   - Import file zip chứa plugin
-   - Hệ thống sẽ tự động cài đặt
-
-3. **Cài đặt thủ công**
-   - Giải nén file plugin
-   - Copy toàn bộ nội dung vào thư mục `app/GP247/Plugins/ShippingStandard`
-   - Truy cập trang admin
-   - Vào mục `Save local` để hoàn tất cài đặt
-
-### Cấu hình
-Các thông số cấu hình được lưu trong file `config.php`:
-- Ngưỡng giá trị đơn hàng để miễn phí vận chuyển
-- Các thông số tính toán chi phí vận chuyển
